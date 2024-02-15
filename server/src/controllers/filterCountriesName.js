@@ -1,9 +1,9 @@
-const { country } = require("../db");
+const { Country } = require("../db");
 const { Op } = require("sequelize");
 
 const filterCountriesName = async (name) => {
   try {
-    const filterCountriesName = await country.findAll({
+    const filterCountriesName = await Country.findAll({
       where: {
         name: {
           [Op.iLike]: `%${name}%`,
@@ -11,9 +11,6 @@ const filterCountriesName = async (name) => {
       },
     });
 
-    if (filterCountriesName.length === 0) {
-      throw new Error("No matches found");
-    }
     return filterCountriesName;
   } catch (error) {
     throw new Error("Error when searching for countries");

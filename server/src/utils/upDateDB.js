@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { country } = require("../db");
+const { Country } = require("../db");
 
 const upDateDB = async () => {
   try {
@@ -23,16 +23,16 @@ const upDateDB = async () => {
       return {
         id: country.cca3,
         name: country.name.common,
-        flag: country.flags.png,
         continent: country.continents[0],
         capital: capital,
         subregion: country.subregion,
         area: country.area,
         population: country.population,
+        flag: country.flags.png,
       };
     });
 
-    await country.bulkCreate(countries);
+    await Country.bulkCreate(countries);
     console.log("Countries data loaded successfully");
   } catch (error) {
     console.error("Could not create countries list:", error.message);
