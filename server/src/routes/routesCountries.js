@@ -25,7 +25,7 @@ routerCountries.get("/", async (req, res) => {
     try {
       const filteredCountry = await filterCountriesName(name);
       if (filteredCountry.length === 0) {
-        return res.status(404).json({ error: "No matches found" });
+        return res.status(404).json({ error: "No name matches found" });
       }
       res.status(200).json(filteredCountry);
     } catch (error) {

@@ -35,9 +35,9 @@ routerActivities.post("/", async (req, res) => {
 
     return res.status(201).json(countriesActivity);
   } catch (error) {
-    if (error.message.includes("does not exist")) {
+    if (error.message.includes("do not exist")) {
       return res.status(404).json({ error: error.message });
-    } else if (error.message.includes("already exists")) {
+    } else if (error.message.includes("already exist")) {
       return res.status(409).json({ error: error.message });
     } else {
       return res.status(500).json({ error: error.message });
