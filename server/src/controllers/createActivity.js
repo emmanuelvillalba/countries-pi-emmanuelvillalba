@@ -16,7 +16,7 @@ const createActivity = async ({
     );
     if (notFoundCountries.length > 0) {
       throw new Error(
-        `The country id:${notFoundCountries.join(", ")} do not exist`
+        `The country id: ${notFoundCountries.join(", ")} do not exist`
       );
     }
 
@@ -38,7 +38,7 @@ const createActivity = async ({
     );
     if (alreadyExist.length > 0) {
       throw new Error(
-        `Activity already exist in the country id:${alreadyExist.join(", ")}`
+        `Activity already exist in the country id: ${alreadyExist.join(", ")}`
       );
     }
 
@@ -152,16 +152,16 @@ module.exports = createActivity;
 //       },
 //     });
 
-//     // const [created] = await country_activity.findOrCreate({
-//     //   where: {
-//     //     CountryId: CountryIdM,
-//     //     ActivityId: newActivity.dataValues.id,
-//     //   },
-//     // });
+    // const [created] = await country_activity.findOrCreate({
+    //   where: {
+    //     CountryId: CountryIdM,
+    //     ActivityId: newActivity.dataValues.id,
+    //   },
+    // });
 
-//     // if (!created) {
-//     //   throw new Error("This activity already exists in this country");
-//     // }
+    // if (!created) {
+    //   throw new Error("This activity already exists in this country");
+    // }
 
 //     const country = await Country.findByPk(CountryIdM);
 

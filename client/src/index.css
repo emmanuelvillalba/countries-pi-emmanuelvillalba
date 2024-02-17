@@ -24,6 +24,11 @@ a:hover {
 }
 
 body {
+  background: url("./assets/backgroundLanding.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   margin: 0;
   display: flex;
   place-items: center;
