@@ -3,14 +3,12 @@ const { Country, Activity } = require("../db");
 const findAllCountries = async () => {
   try {
     const allCountries = await Country.findAll({
-      include: [
-        {
-          model: Activity,
-          through: {
-            attributes: [],
-          },
+      include: {
+        model: Activity,
+        through: {
+          attributes: [],
         },
-      ],
+      },
     });
     return allCountries;
   } catch (error) {

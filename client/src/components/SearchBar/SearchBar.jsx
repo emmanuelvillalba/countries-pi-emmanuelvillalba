@@ -1,13 +1,13 @@
 import './SearchBar.css'
 import iconSearch from '../../assets/iconSearch.svg'
 import { useState } from "react";
-// import { useDispatch } from 'react-redux';
-// import { findNameCountries } from '../../Redux/actions';
+import { useDispatch } from 'react-redux';
+import { findNameCountries } from '../../redux/actions';
 
 const SearchBar = () => {
   const [aux, setAux] = useState("");
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleChange = (event) => {
     setAux(event.target.value)
@@ -15,7 +15,7 @@ const SearchBar = () => {
 
   const handleSearch = () => {
     const inputSearch = document.querySelector("#inputSearch")
-    // dispatch(findNameCountries(inputSearch.value))
+    dispatch(findNameCountries(inputSearch.value))
     inputSearch.value = ""
   }
 
