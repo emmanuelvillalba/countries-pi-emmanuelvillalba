@@ -1,26 +1,26 @@
 const { Country, Activity } = require("../db");
 const { Op } = require("sequelize");
 
-const filterCountriesName = async (name) => {
+const filterActivitiesName = async (name) => {
   try {
-    const filteredCountries = await Country.findAll({
+    const filteredActivities = await Activity.findAll({
       where: {
         name: {
           [Op.iLike]: `%${name}%`,
         },
       },
       include: {
-        model: Activity,
+        model: Country,
         through: {
           attributes: [],
         },
       },
     });
 
-    return filteredCountries;
+    return filteredActivities;
   } catch (error) {
-    throw new Error("Error when searching for countries");
+    throw new Error("Error when searching for activities");
   }
 };
 
-module.exports = filterCountriesName;
+module.exports = filterActivitiesName;

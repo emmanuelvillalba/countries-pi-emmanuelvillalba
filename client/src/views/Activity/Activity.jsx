@@ -1,25 +1,32 @@
-import { useDispatch, useSelector } from 'react-redux';
-import CardActivity from '../../components/Card/CardActivity';
-import { findAllActivities } from '../../redux/actions'
-import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import SearchBar from "../../components/SearchBar/SearchBar"
+import ConteinerActivities from "../../components/CardConteiner/ConteinerActivities"
+import CreateActivity from "../../components/Form/CreateActivity"
+import { findAllActivities, findNameActivities } from '../../redux/actions'
 
 const Activity = () => {
   const dispatch = useDispatch()
-  const activities = useSelector(state => state.activities)
 
-  useEffect(() => {
+  const allActivities = () => {
     dispatch(findAllActivities())
-  }, [])
+  }
 
   return (
     <div>
-      <ul>
-        {activities?.map((activity, index) => {
-          return <li key={index}>
-            <CardActivity key={activity.id} activity={activity} />
-          </li>
-        })}
-      </ul>
+      <div>
+        <SearchBar action={findNameActivities} />
+      </div>
+      <div>
+        <CreateActivity />
+      </div>
+      <div>
+        <button onClick={allActivities}> All Activities </button>
+      </div>
+      <div>
+        <ul>
+          <ConteinerActivities />
+        </ul>
+      </div>
     </div>
   )
 }

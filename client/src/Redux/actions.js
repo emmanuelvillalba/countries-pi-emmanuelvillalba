@@ -7,6 +7,8 @@ export const ORDER_ALPHABETICAL = "ORDER_ALPHABETICAL";
 export const ORDER_POPULATION = "ORDER_POPULATION";
 export const FILTER_CONTINENT = "FILTER_CONTINENT";
 export const FIND_DETAIL = "FIND_DETAIL";
+export const CREATE_ACTIVITY = "CREATE_ACTIVITY";
+export const FIND_NAMEACTIVITY = "FIND_NAMEACTIVITY";
 
 export const findAllCountries = () => {
   return async (dispatch) => {
@@ -17,7 +19,11 @@ export const findAllCountries = () => {
         payload: data,
       });
     } catch (error) {
-      window.alert(error.message);
+      if (error.response.data.error) {
+        window.alert(error.response.data.error);
+      } else {
+        window.alert(error.message);
+      }
     }
   };
 };
@@ -31,7 +37,11 @@ export const findAllActivities = () => {
         payload: data,
       });
     } catch (error) {
-      window.alert(error.message);
+      if (error.response.data.error) {
+        window.alert(error.response.data.error);
+      } else {
+        window.alert(error.message);
+      }
     }
   };
 };
@@ -45,7 +55,29 @@ export const findNameCountries = (name) => {
         payload: data,
       });
     } catch (error) {
-      window.alert(error.message);
+      if (error.response.data.error) {
+        window.alert(error.response.data.error);
+      } else {
+        window.alert(error.message);
+      }
+    }
+  };
+};
+
+export const findNameActivities = (name) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(URL_SERVER + `/activities?name=${name}`);
+      return dispatch({
+        type: FIND_NAMEACTIVITY,
+        payload: data,
+      });
+    } catch (error) {
+      if (error.response.data.error) {
+        window.alert(error.response.data.error);
+      } else {
+        window.alert(error.message);
+      }
     }
   };
 };
@@ -73,10 +105,39 @@ export const filterContinent = (continent) => {
 
 export const findDetail = (id) => {
   return async (dispatch) => {
-    const { data } = await axios.get(URL_SERVER + `/countries/${id}`);
-    return dispatch({
-      type: FIND_DETAIL,
-      payload: data,
-    });
+    try {
+      const { data } = await axios.get(URL_SERVER + `/countries/${id}`);
+      return dispatch({
+        type: FIND_DETAIL,
+        payload: data,
+      });
+    } catch (error) {
+      if (error.response.data.error) {
+        window.alert(error.response.data.error);
+      } else {
+        window.alert(error.message);
+      }
+    }
+  };
+};
+
+export const createActivity = (activityDate) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post(
+        URL_SERVER + `/activities`,
+        activityDate
+      );
+      return dispatch({
+        type: CREATE_ACTIVITY,
+        payload: data,
+      });
+    } catch (error) {
+      if (error.response.data.error) {
+        window.alert(error.response.data.error);
+      } else {
+        window.alert(error.message);
+      }
+    }
   };
 };

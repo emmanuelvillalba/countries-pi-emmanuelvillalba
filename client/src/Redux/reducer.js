@@ -2,10 +2,12 @@ import {
   FIND_ALLCOUNTRY,
   FIND_ALLACTIVITY,
   FIND_NAMECOUNTRY,
+  FIND_NAMEACTIVITY,
   ORDER_ALPHABETICAL,
   ORDER_POPULATION,
   FILTER_CONTINENT,
   FIND_DETAIL,
+  CREATE_ACTIVITY,
 } from "./actions";
 
 const initialState = {
@@ -35,6 +37,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         countries: payload,
         allCountries: payload,
+      };
+
+    case FIND_NAMEACTIVITY:
+      return {
+        ...state,
+        activities: payload,
       };
 
     case FIND_DETAIL:
@@ -78,6 +86,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         countries:
           filteredCountries.length > 0 ? filteredCountries : copyAllCountries,
+      };
+
+    case CREATE_ACTIVITY:
+      return {
+        ...state,
+        activities: payload,
       };
 
     default:

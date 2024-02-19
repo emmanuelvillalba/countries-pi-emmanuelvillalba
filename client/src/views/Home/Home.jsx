@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
 import { useEffect } from 'react'
-import CardConteiner from "../../components/CardConteiner/CardConteiner"
+import ConteinerCountries from "../../components/CardConteiner/ConteinerCountries"
 import SearchBar from "../../components/SearchBar/SearchBar"
-import { findAllCountries, orderAlphabetical, orderPopulation, filterContinent } from '../../redux/actions'
-
+import { findAllCountries, findNameCountries, orderAlphabetical, orderPopulation, filterContinent } from '../../redux/actions'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -28,10 +27,10 @@ const Home = () => {
   return (
     <div>
       <div className="searchbar">
-        <SearchBar />
+        <SearchBar action={findNameCountries} />
       </div>
       <div>
-        <Link to="/activity">
+        <Link to="/activities">
           <button>ACTIVITY</button>
         </Link>
       </div>
@@ -73,7 +72,7 @@ const Home = () => {
         </div>
       </div>
       <div>
-        <CardConteiner />
+        <ConteinerCountries />
       </div>
     </div>
   )

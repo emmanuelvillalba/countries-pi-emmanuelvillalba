@@ -2,6 +2,8 @@ import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { findDetail } from "../../redux/actions"
+import { Link } from "react-router-dom"
+import { findNameActivities } from '../../redux/actions'
 
 const Details = () => {
   const { id } = useParams()
@@ -16,7 +18,7 @@ const Details = () => {
     <div>
       <div>
         <div>
-          {detail.name}
+          Name: {detail.name}
           <br />
           ID: {detail.id}
           <br />
@@ -30,11 +32,15 @@ const Details = () => {
           <br />
           Population: {detail.population}
           <br />
-          Activities: <ul>
-            {detail.Activities?.map((activity, index) => (
+          Activities:
+          {detail.Activities?.map((activity, index) => (
+            <Link to="/activities" onClick={() => {
+              dispatch(findNameActivities(activity.name));
+            }}
+            >
               <li key={index}>{activity.name}</li>
-            ))}
-          </ul>
+            </Link>
+          ))}
         </div>
         <img src={detail.flag} alt="image" />
       </div>

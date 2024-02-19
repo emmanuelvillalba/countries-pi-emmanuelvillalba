@@ -18,7 +18,7 @@ routerCountries.get("/:id", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-
+ 
 routerCountries.get("/", async (req, res) => {
   const { name } = req.query;
   if (name) {

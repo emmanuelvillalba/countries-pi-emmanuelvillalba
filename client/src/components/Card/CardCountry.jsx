@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-const Card = ({ country }) => {
+const CardCountry = ({ country }) => {
 
   return (
     <div>
@@ -19,4 +19,4 @@ const Card = ({ country }) => {
   )
 }
 
-export default Card
+export default CardCountry

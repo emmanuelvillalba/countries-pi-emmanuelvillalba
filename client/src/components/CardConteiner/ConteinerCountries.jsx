@@ -1,11 +1,12 @@
-import Card from '../Card/Card.jsx';
+import CardCountry from '../Card/CardCountry.jsx';
 import { useSelector } from 'react-redux';
 
-const CardConteiner = () => {
+const ConteinerCountries = () => {
   const countries = useSelector(state => state.countries)
+
   return (<div className="cards">
     {countries?.map((country) => {
-      return <Card
+      return <CardCountry
         key={country.id}
         country={country}
       />
@@ -13,4 +14,4 @@ const CardConteiner = () => {
   </div>)
 }
 
-export default CardConteiner
+export default ConteinerCountries

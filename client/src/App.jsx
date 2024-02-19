@@ -8,6 +8,7 @@ import Nav from "./components/Nav/Nav"
 
 function App() {
   const location = useLocation()
+  
   return (
     <>
       {location.pathname !== "/" && (
@@ -17,7 +18,7 @@ function App() {
         <Route path='/' element={<Landing />} />
         <Route path='/home' element={<Home />} />
         <Route path='/detail/:id' element={<Details />} />
-        <Route path='/activity' element={<Activity />} />
+        <Route path='/activities' element={<Activity />} />
         <Route path="/about" element={<About />} />
       </Routes>
     </>

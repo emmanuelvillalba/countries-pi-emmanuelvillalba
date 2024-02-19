@@ -1,20 +1,23 @@
 import { Link } from "react-router-dom"
 
 const CardActivity = ({ activity }) => {
+
     return (
         <div>
-            <div>
-                {activity.name}
-            </div>
-            <div>
-                Difficulty: {activity.difficulty}
-                <br />
-                Duration: {activity.duration} hs
-                <br />
-                Season: {activity.season}
-                <br />
-                Countries:
-            </div>
+            Name: {activity.name}
+            <br />
+            Difficulty: {activity.difficulty}/5
+            <br />
+            Duration: {activity.duration} hs
+            <br />
+            Season: {activity.season}
+            <br />
+            Countries:
+            {activity.Countries?.map((country, index) => (
+                <Link to={`/detail/${country.id}`}>
+                    <span key={index}> {country.id} </span>
+                </Link>
+            ))}
         </div>
     )
 }

@@ -1,16 +1,30 @@
 const { Router } = require("express");
 const createActivity = require("../controllers/createActivity");
 const findAllActivities = require("../controllers/findAllActivities");
+const filterActivitiesName = require("../controllers/filterActivitiesName");
 
 const routerActivities = Router();
 
 routerActivities.get("/", async (req, res) => {
+  const { name } = req.query;
+  if (name) {
+    try {
+      const filteredActivity = await filterActivitiesName(name);
+      if (filteredActivity.length === 0) {
+        return res.status(404).json({ error: "No name matches found" });
+      }
+      res.status(200).json(filteredActivity);
+    } catch (error) {
+      res.status(500).json({ error: error.menssage });
+    }
+  } else {
   try {
     const allActivities = await findAllActivities();
     res.status(200).json(allActivities);
   } catch (error) {
     res.status(500).json({ error: error.menssage });
   }
+}
 });
 
 routerActivities.post("/", async (req, res) => {
@@ -25,7 +39,7 @@ routerActivities.post("/", async (req, res) => {
     .map((country) => country.toUpperCase());
 
   try {
-    const countriesActivity = await createActivity({
+    const activitiesCountries = await createActivity({
       name,
       difficulty,
       duration,
@@ -33,9 +47,11 @@ routerActivities.post("/", async (req, res) => {
       countriesId,
     });
 
-    return res.status(201).json(countriesActivity);
+    return res.status(201).json(activitiesCountries);
   } catch (error) {
     if (error.message.includes("do not exist")) {
+      return res.status(404).json({ error: error.message });
+    } else if (error.message.includes("Repeated activity name")) {
       return res.status(404).json({ error: error.message });
     } else if (error.message.includes("already exist")) {
       return res.status(409).json({ error: error.message });

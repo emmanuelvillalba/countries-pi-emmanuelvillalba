@@ -1,4 +1,5 @@
 const { Country, Activity } = require("../db");
+const findAllActivities = require("./findAllActivities");
 
 const createActivity = async ({
   name,
@@ -20,15 +21,26 @@ const createActivity = async ({
       );
     }
 
-    const [newActivity] = await Activity.findOrCreate({
-      where: { name },
-      defaults: {
-        name,
-        difficulty,
-        duration,
-        season,
-      },
+    const existingActivity = await Activity.findOne({
+      where: { name, difficulty, duration, season },
     });
+    let newActivity;
+
+    if (existingActivity) {
+      newActivity = existingActivity;
+    } else {
+      const existingName = await Activity.findOne({ where: { name } });
+      if (existingName) {
+        throw new Error("Repeated activity name");
+      } else {
+        newActivity = await Activity.create({
+          name,
+          difficulty,
+          duration,
+          season,
+        });
+      }
+    }
 
     const existingAssociations = await Promise.all(
       countries.map((country) => country.hasActivity(newActivity))
@@ -46,9 +58,12 @@ const createActivity = async ({
       countries.map((country) => country.addActivity(newActivity))
     );
 
-    return `Activity ${name} successfully created in country ${countriesId.join(
-      ", "
-    )}`;
+    const allActivity = await findAllActivities();
+
+    return allActivity;
+    // `Activity ${name} successfully created in country ${countriesId.join(
+    //   ", "
+    // )}`;
   } catch (error) {
     throw new Error(error.message);
   }
@@ -152,16 +167,16 @@ module.exports = createActivity;
 //       },
 //     });
 
-    // const [created] = await country_activity.findOrCreate({
-    //   where: {
-    //     CountryId: CountryIdM,
-    //     ActivityId: newActivity.dataValues.id,
-    //   },
-    // });
+// const [created] = await country_activity.findOrCreate({
+//   where: {
+//     CountryId: CountryIdM,
+//     ActivityId: newActivity.dataValues.id,
+//   },
+// });
 
-    // if (!created) {
-    //   throw new Error("This activity already exists in this country");
-    // }
+// if (!created) {
+//   throw new Error("This activity already exists in this country");
+// }
 
 //     const country = await Country.findByPk(CountryIdM);
 
