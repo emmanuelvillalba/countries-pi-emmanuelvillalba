@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { findDetail } from "../../redux/actions"
 import { Link } from "react-router-dom"
+import { ACTIVITIES } from '../../helpers/PATHROUTES'
 import { findNameActivities } from '../../redux/actions'
 
 const Details = () => {
@@ -34,7 +35,7 @@ const Details = () => {
           <br />
           Activities:
           {detail.Activities?.map((activity, index) => (
-            <Link to="/activities" onClick={() => {
+            <Link to={ACTIVITIES} onClick={() => {
               dispatch(findNameActivities(activity.name));
             }}
             >

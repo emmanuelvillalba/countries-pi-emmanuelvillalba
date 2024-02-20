@@ -8,7 +8,7 @@ import {
   FILTER_CONTINENT,
   FIND_DETAIL,
   CREATE_ACTIVITY,
-} from "./actions";
+} from "./actions-types";
 
 const initialState = {
   countries: [],

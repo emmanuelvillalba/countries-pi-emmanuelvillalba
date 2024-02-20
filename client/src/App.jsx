@@ -1,4 +1,5 @@
 import { Routes, Route, useLocation } from "react-router-dom";
+import { HOME, DETAILID, ACTIVITIES, ABOUT } from './helpers/PATHROUTES';
 import About from "./views/About/About"
 import Activity from "./views/Activity/Activity"
 import Details from "./views/Details/Details"
@@ -8,7 +9,7 @@ import Nav from "./components/Nav/Nav"
 
 function App() {
   const location = useLocation()
-  
+
   return (
     <>
       {location.pathname !== "/" && (
@@ -16,10 +17,10 @@ function App() {
       )}
       <Routes>
         <Route path='/' element={<Landing />} />
-        <Route path='/home' element={<Home />} />
-        <Route path='/detail/:id' element={<Details />} />
-        <Route path='/activities' element={<Activity />} />
-        <Route path="/about" element={<About />} />
+        <Route path={HOME} element={<Home />} />
+        <Route path={DETAILID(":id")} element={<Details />} />
+        <Route path={ACTIVITIES} element={<Activity />} />
+        <Route path={ABOUT} element={<About />} />
       </Routes>
     </>
   )

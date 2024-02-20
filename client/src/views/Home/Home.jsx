@@ -1,13 +1,22 @@
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
-import { useEffect } from 'react'
-import ConteinerCountries from "../../components/CardConteiner/ConteinerCountries"
+import { useEffect, useState } from 'react'
+import { ACTIVITIES } from '../../helpers/PATHROUTES'
 import SearchBar from "../../components/SearchBar/SearchBar"
 import { findAllCountries, findNameCountries, orderAlphabetical, orderPopulation, filterContinent } from '../../redux/actions'
+import CardCountry from '../../components/Card/CardCountry'
+import Pagination from '../../components/Pagination/pagination'
 
 const Home = () => {
+
   const dispatch = useDispatch()
   const countries = useSelector(state => state.countries)
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const cardsPerPage = 10
+  const changePage = (num) => {
+    setCurrentPage(num);
+  };
 
   const handleAlphabetical = (event) => {
     dispatch(orderAlphabetical(event.target.value))
@@ -30,7 +39,7 @@ const Home = () => {
         <SearchBar action={findNameCountries} />
       </div>
       <div>
-        <Link to="/activities">
+        <Link to={ACTIVITIES}>
           <button>ACTIVITY</button>
         </Link>
       </div>
@@ -71,8 +80,15 @@ const Home = () => {
           </select>
         </div>
       </div>
+      <div className="cards">
+        {countries
+          ?.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
+          .map((country) => {
+            return <CardCountry country={country} key={country.id} />;
+          })}
+      </div>
       <div>
-        <ConteinerCountries />
+        <Pagination currentPage={currentPage} totalPages={Math.ceil(countries.length / cardsPerPage)} changePage={changePage} />
       </div>
     </div>
   )

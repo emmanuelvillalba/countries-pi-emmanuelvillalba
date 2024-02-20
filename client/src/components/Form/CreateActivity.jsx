@@ -31,7 +31,6 @@ const FormActivity = () => {
         event.preventDefault();
         if (Object.keys(errors).length === 0) {
             dispatch(createActivity(activityDate));
-            alert('Successfully created tourist activity');
             setActivityDate({
                 name: '',
                 difficulty: '',
@@ -51,6 +50,7 @@ const FormActivity = () => {
                 <input type="text" name="name" onChange={handleChange} value={activityDate.name} />
                 {errors.name && <p>{errors.name}</p>}
             </div>
+
             {/* <div>
                 <label>Difficulty:</label>
                 <span onChange={handleChange}>
@@ -90,7 +90,7 @@ const FormActivity = () => {
             </div>
             <div>
                 <label>Countries ID:</label>
-                <input type="text" name="countries" onChange={handleChange} value={activityDate.countries} placeholder="Enter country ID (3 letters). Example: ARG,BRA,COL" />
+                <input type="text" name="countries" onChange={handleChange} value={activityDate.countries} placeholder="Enter country ID (3 letters)" />
                 {errors.countries && <p>{errors.countries}</p>}
             </div>
             <button type="submit">Create Activity</button>

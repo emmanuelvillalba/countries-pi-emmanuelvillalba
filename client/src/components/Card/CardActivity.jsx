@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { DETAILID } from "../../helpers/PATHROUTES"
 
 const CardActivity = ({ activity }) => {
 
@@ -14,7 +15,7 @@ const CardActivity = ({ activity }) => {
             <br />
             Countries:
             {activity.Countries?.map((country, index) => (
-                <Link to={`/detail/${country.id}`}>
+                <Link to={DETAILID(country.id)}>
                     <span key={index}> {country.id} </span>
                 </Link>
             ))}

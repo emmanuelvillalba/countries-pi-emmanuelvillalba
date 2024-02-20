@@ -1,7 +1,7 @@
 import CardActivity from '../Card/CardActivity';
 import { useSelector } from 'react-redux';
 
-const ConteinerActivities = () => {
+const ContainerActivities = () => {
     const activities = useSelector(state => state.activities)
 
     return (<div className="cards">
@@ -13,4 +13,4 @@ const ConteinerActivities = () => {
     </div>)
 }
 
-export default ConteinerActivities
+export default ContainerActivities

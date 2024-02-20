@@ -1,14 +1,16 @@
 import axios from "axios";
 import URL_SERVER from "../helpers/URL_SERVER";
-export const FIND_ALLCOUNTRY = "FIND_ALLCOUNTRY";
-export const FIND_ALLACTIVITY = "FIND_ALLACTIVITY";
-export const FIND_NAMECOUNTRY = "FIND_NAMECOUNTRY";
-export const ORDER_ALPHABETICAL = "ORDER_ALPHABETICAL";
-export const ORDER_POPULATION = "ORDER_POPULATION";
-export const FILTER_CONTINENT = "FILTER_CONTINENT";
-export const FIND_DETAIL = "FIND_DETAIL";
-export const CREATE_ACTIVITY = "CREATE_ACTIVITY";
-export const FIND_NAMEACTIVITY = "FIND_NAMEACTIVITY";
+import {
+  FIND_ALLCOUNTRY,
+  FIND_ALLACTIVITY,
+  FIND_NAMECOUNTRY,
+  FIND_NAMEACTIVITY,
+  ORDER_ALPHABETICAL,
+  ORDER_POPULATION,
+  FILTER_CONTINENT,
+  FIND_DETAIL,
+  CREATE_ACTIVITY,
+} from "./actions-types";
 
 export const findAllCountries = () => {
   return async (dispatch) => {
@@ -128,6 +130,7 @@ export const createActivity = (activityDate) => {
         URL_SERVER + `/activities`,
         activityDate
       );
+      alert('Successfully created tourist activity');
       return dispatch({
         type: CREATE_ACTIVITY,
         payload: data,

@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom"
+import { DETAILID } from "../../helpers/PATHROUTES"
 
 const CardCountry = ({ country }) => {
 
   return (
     <div>
-      <Link to={`/detail/${country.id}`}>
+      <Link to={DETAILID(country.id)}>
         <div>
           <div>
             Name: {country.name}

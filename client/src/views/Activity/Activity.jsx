@@ -1,6 +1,6 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import SearchBar from "../../components/SearchBar/SearchBar"
-import ConteinerActivities from "../../components/CardConteiner/ConteinerActivities"
+import ContainerActivities from "../../components/CardContainer/ContainerActivities"
 import CreateActivity from "../../components/Form/CreateActivity"
 import { findAllActivities, findNameActivities } from '../../redux/actions'
 
@@ -24,7 +24,7 @@ const Activity = () => {
       </div>
       <div>
         <ul>
-          <ConteinerActivities />
+          <ContainerActivities />
         </ul>
       </div>
     </div>
