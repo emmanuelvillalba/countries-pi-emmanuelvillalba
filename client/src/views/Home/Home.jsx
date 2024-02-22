@@ -1,3 +1,4 @@
+import "./Home.css"
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
 import { useEffect, useState } from 'react'
@@ -80,7 +81,7 @@ const Home = () => {
           </select>
         </div>
       </div>
-      <div className="cards">
+      <div className="containerCountry">
         {countries
           ?.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
           .map((country) => {

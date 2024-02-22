@@ -1,16 +1,21 @@
-const fs = require("fs");
-const path = require("path");
+// const fs = require("fs");
+// const path = require("path");
 const { Country } = require("../db");
+const axios = require("axios");
+URL_API = "http://localhost:5000/countries"
 
 const upDateDB = async () => {
   try {
-    const data = await fs.readFileSync(
-      path.join(__dirname, "../../api/db.json"),
-      "utf8"
-    );
-    const jsonData = JSON.parse(data);
+    // const data = await fs.readFileSync(
+    //   path.join(__dirname, "../../api/db.json"),
+    //   "utf8"
+    // );
+    // const jsonData = JSON.parse(data);
 
-    let countries = jsonData.countries.map((country) => {
+    const {data} = await axios(URL_API)
+ 
+
+    let countries = data.map((country) => {
       let capital;
       if (!country.capital || country.capital.length === 0) {
         capital = "unknown";

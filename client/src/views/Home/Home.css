@@ -5,3 +5,14 @@
     margin: 10px;
     padding: 20px;
 }
+
+.containerCountry {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.containerCountry div {
+    flex: 1 0 calc(20% - 20px);
+    margin: 50px;
+}
