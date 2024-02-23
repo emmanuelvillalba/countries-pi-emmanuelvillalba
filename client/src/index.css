@@ -24,18 +24,11 @@ a:hover {
 
 body {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  place-items: center;
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
   font-family: "Euclid Circular A", "Poppins";
-
-  background: url("./assets/backgroundLanding.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
 }
 
 h1 {
@@ -58,10 +51,6 @@ button {
 
 button:hover {
   border-color: #0c17e3;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
 @media (prefers-color-scheme: light) {

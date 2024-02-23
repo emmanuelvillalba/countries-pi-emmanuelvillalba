@@ -9,10 +9,46 @@
 .containerCountry {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
+    margin-left:-25%;
 }
 
 .containerCountry div {
-    flex: 1 0 calc(20% - 20px);
     margin: 50px;
 }
+
+.orderAlphabetical {
+    position: fixed;
+    justify-content: center;
+    top: 14%;
+    right: 9%;
+    margin: 10px;
+    padding: 20px;
+  }
+
+.orderPopulation {
+    position: fixed;
+    justify-content: center;
+    top: 14%;
+    right: 1%;
+    margin: 10px;
+    padding: 20px;
+  }
+  
+  .filterContinent {
+    position: fixed;
+    justify-content: center;
+    top: 22%;
+    right: 5%;
+    margin: 10px;
+    padding: 20px;
+  }
+  
+  .filterActivity {
+    position: fixed;
+    justify-content: center;
+    top: 30%;
+    right: 3%;
+    margin: 10px;
+    padding: 20px;
+  }

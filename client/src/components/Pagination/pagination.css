@@ -1,4 +1,23 @@
+.pagination {
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap; 
+    gap: 3px;
+    margin-left:-25%;
+}
+
+.btn-pagination {
+    margin: 3px; 
+    padding: 10px;
+}
+
 .currentPage {
-    background-color: #FF7F11;
+    background-color: #f76d6d;
     border-color: rgb(15, 14, 14);
+    border-width: 2.5px;
+}
+
+.dots {
+    font-size: 20px;
+    color: black;
 }

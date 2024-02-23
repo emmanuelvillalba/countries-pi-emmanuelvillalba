@@ -1,3 +1,4 @@
+import "./App.css"
 import { Routes, Route, useLocation } from "react-router-dom";
 import { HOME, DETAILID, ACTIVITIES, ABOUT } from './helpers/PATHROUTES';
 import About from "./views/About/About"

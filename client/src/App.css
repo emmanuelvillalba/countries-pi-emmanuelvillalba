@@ -9,11 +9,10 @@
   color: #888;
 }
 
-/* body {
-  background: url("./assets/backgroundLanding.png");
+body {
+  background: url("./assets/backgroundApp.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-} */
-
+}

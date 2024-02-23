@@ -6,6 +6,7 @@ import {
   ORDER_ALPHABETICAL,
   ORDER_POPULATION,
   FILTER_CONTINENT,
+  FILTER_ACTIVITY,
   FIND_DETAIL,
   CREATE_ACTIVITY,
 } from "./actions-types";
@@ -86,6 +87,17 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         countries:
           filteredCountries.length > 0 ? filteredCountries : copyAllCountries,
+      };
+
+    case FILTER_ACTIVITY:
+      const copy2AllCountries = [...state.allCountries];
+      const filteredActivity = copy2AllCountries.filter(
+        (country) => country.Activities.some(activity => activity.name === payload)
+      );
+      return {
+        ...state,
+        countries:
+          filteredActivity.length > 0 ? filteredActivity : copy2AllCountries,
       };
 
     case CREATE_ACTIVITY:

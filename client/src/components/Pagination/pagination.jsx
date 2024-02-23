@@ -8,18 +8,18 @@ const Pagination = ({ currentPage, totalPages, changePage }) => {
     }
 
     return (
-        <div>
-            {currentPage > 1 && <button onClick={() => changePage(currentPage - 1)}>Previous</button>}
-            {currentPage > 3 && <button onClick={() => changePage(1)}>1</button>}
-            {currentPage > 3 && "..."}
-            {currentPage > 2 && <button onClick={() => changePage(currentPage - 2)}>{currentPage - 2}</button>}
-            {currentPage > 1 && <button onClick={() => changePage(currentPage - 1)}>{currentPage - 1}</button>}
+        <div className='pagination'>
+            {currentPage > 1 && <button className="btn-pagination" onClick={() => changePage(currentPage - 1)}>Previous</button>}
+            {currentPage > 3 && <button className="btn-pagination" onClick={() => changePage(1)}>1</button>}
+            {currentPage > 3 && <span className="dots">...</span>}
+            {currentPage > 2 && <button className="btn-pagination" onClick={() => changePage(currentPage - 2)}>{currentPage - 2}</button>}
+            {currentPage > 1 && <button className="btn-pagination" onClick={() => changePage(currentPage - 1)}>{currentPage - 1}</button>}
             <button className='currentPage'> {currentPage} </button>
-            {currentPage < totalPages && <button onClick={() => changePage(currentPage + 1)}>{currentPage + 1}</button>}
-            {currentPage < totalPages - 1 && <button onClick={() => changePage(currentPage + 2)}>{currentPage + 2}</button>}
-            {currentPage < totalPages - 2 && "..."}
-            {currentPage < totalPages - 2 && <button onClick={() => changePage(totalPages)}>{totalPages}</button>}
-            {currentPage < totalPages && <button onClick={() => changePage(currentPage + 1)}>Next</button>}
+            {currentPage < totalPages && <button className="btn-pagination" onClick={() => changePage(currentPage + 1)}>{currentPage + 1}</button>}
+            {currentPage < totalPages - 1 && <button className="btn-pagination" onClick={() => changePage(currentPage + 2)}>{currentPage + 2}</button>}
+            {currentPage < totalPages - 2 && <span className="dots">...</span>}
+            {currentPage < totalPages - 2 && <button className="btn-pagination" onClick={() => changePage(totalPages)}>{totalPages}</button>}
+            {currentPage < totalPages && <button className="btn-pagination" onClick={() => changePage(currentPage + 1)}>Next</button>}
         </div>
     );
 };

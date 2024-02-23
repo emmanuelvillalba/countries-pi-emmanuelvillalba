@@ -1,0 +1,18 @@
+.navConteiner {
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    top: 0;
+    right: 0;
+    margin-top: -10px;
+    margin-right: 5px;
+    padding: 20px;
+}
+
+.buttonActivity {
+    margin-left: 20px;
+}
+
+.buttonAbout {
+    margin-left: 20px;
+}

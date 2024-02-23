@@ -1,22 +1,21 @@
 .searchBox {
     display: flex;
-    max-width: 230px;
+    position: relative;
+    top: -90px;
+    width: 340px;
     align-items: center;
-    justify-content: space-between;
-    gap: 8px;
     background: #2f3640;
     border-radius: 50px;
-    position: relative;
+    margin-right: -10px;
   }
   
-  /*hover effect*/
+  
   button:hover {
     color: #fff;
     background-color: #1A1A1A;
     box-shadow: rgba(0, 0, 0, 0.5) 0 10px 20px;
     transform: translateY(-3px);
   }
-  /* button pressing effect */
   button:active {
     box-shadow: none;
     transform: translateY(0);

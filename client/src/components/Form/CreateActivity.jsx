@@ -1,3 +1,4 @@
+import "./CreateActivity.css"
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { createActivity } from '../../redux/actions.js'
@@ -43,41 +44,32 @@ const FormActivity = () => {
         }
     }
 
+    const isFormValid = () => {
+        const currentErrors = validations(activityDate);
+        return !currentErrors.name && !currentErrors.difficulty && !currentErrors.duration && !currentErrors.season && !currentErrors.countries
+    }
+
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
+        <form className="formActivity" onSubmit={handleSubmit}>
+            <h2 className="tittle-createActivity">
+                Create tourist activity
+            </h2>
+            <div className='formName'>
                 <label>Name:</label>
                 <input type="text" name="name" onChange={handleChange} value={activityDate.name} />
                 {errors.name && <p>{errors.name}</p>}
             </div>
-
-            {/* <div>
-                <label>Difficulty:</label>
-                <span onChange={handleChange}>
-                    {[...Array(5)].map((star, i) => {
-                        const ratingValue = i + 1;
-                        return (
-                            <span key={i}>
-                                <input type="radio" name="difficulty" value={ratingValue} />
-                                <span>☆</span>
-                            </span>
-                        );
-                    })}
-                </span>
-                {errors.difficulty && <p>{errors.difficulty}</p>}
-            </div> */}
-
-            <div>
+            <div className='formDifficulty'>
                 <label>Difficulty:</label>
                 <input type="number" name="difficulty" onChange={handleChange} value={activityDate.difficulty} min="1" max="5" step="1" />
                 {errors.difficulty && <p>{errors.difficulty}</p>}
             </div>
-            <div>
+            <div className='formDuration'>
                 <label>Duration:</label>
-                <input type="number" name="duration" onChange={handleChange} value={activityDate.duration} min="0" step="1" />
+                <input type="number" name="duration" onChange={handleChange} value={activityDate.duration} min="0" max="72" step="1" />
                 {errors.duration && <p>{errors.duration}</p>}
             </div>
-            <div>
+            <div className='formSeason'>
                 <label>Season:</label>
                 <select name="season" onChange={handleChange} value={activityDate.season}>
                     <option value="">--Select--</option>
@@ -88,12 +80,12 @@ const FormActivity = () => {
                 </select>
                 {errors.season && <p>{errors.season}</p>}
             </div>
-            <div>
+            <div className='formCountriesID'>
                 <label>Countries ID:</label>
                 <input type="text" name="countries" onChange={handleChange} value={activityDate.countries} placeholder="Enter country ID (3 letters)" />
                 {errors.countries && <p>{errors.countries}</p>}
             </div>
-            <button type="submit">Create Activity</button>
+            <button className="btn-createActivity" type="submit" disabled={!isFormValid()}>Create Activity</button>
         </form>
     );
 

@@ -1,3 +1,4 @@
+import "./Activity.css"
 import { useDispatch } from 'react-redux'
 import SearchBar from "../../components/SearchBar/SearchBar"
 import ContainerActivities from "../../components/CardContainer/ContainerActivities"
@@ -13,21 +14,16 @@ const Activity = () => {
 
   return (
     <div>
-      <div>
+      <div className="searchbar">
         <SearchBar action={findNameActivities} />
       </div>
-      <div>
+      <div className="containerActivities">
+        <ContainerActivities />
         <CreateActivity />
-      </div>
-      <div>
-        <button onClick={allActivities}> All Activities </button>
-      </div>
-      <div>
-        <ul>
-          <ContainerActivities />
-        </ul>
+        <button className="btn-allActivities" onClick={allActivities}> All Activities </button>
       </div>
     </div>
+
   )
 }
 

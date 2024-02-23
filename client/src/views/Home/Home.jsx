@@ -1,17 +1,25 @@
 import "./Home.css"
-import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
 import { useEffect, useState } from 'react'
-import { ACTIVITIES } from '../../helpers/PATHROUTES'
+
 import SearchBar from "../../components/SearchBar/SearchBar"
-import { findAllCountries, findNameCountries, orderAlphabetical, orderPopulation, filterContinent } from '../../redux/actions'
 import CardCountry from '../../components/Card/CardCountry'
 import Pagination from '../../components/Pagination/pagination'
+import {
+  findAllCountries,
+  findNameCountries,
+  orderAlphabetical,
+  orderPopulation,
+  filterContinent,
+  filterActivity,
+  findAllActivities
+} from '../../redux/actions'
 
 const Home = () => {
 
   const dispatch = useDispatch()
   const countries = useSelector(state => state.countries)
+  const activities = useSelector(state => state.activities)
 
   const [currentPage, setCurrentPage] = useState(1);
   const cardsPerPage = 10
@@ -26,12 +34,17 @@ const Home = () => {
     dispatch(orderPopulation(event.target.value))
   }
 
-  const handleFilter = (event) => {
+  const handleFilterContinent = (event) => {
     dispatch(filterContinent(event.target.value));
+  }
+
+  const handleFilterActivity = (event) => {
+    dispatch(filterActivity(event.target.value));
   }
 
   useEffect(() => {
     dispatch(findAllCountries())
+    dispatch(findAllActivities())
   }, [])
 
   return (
@@ -40,12 +53,7 @@ const Home = () => {
         <SearchBar action={findNameCountries} />
       </div>
       <div>
-        <Link to={ACTIVITIES}>
-          <button>ACTIVITY</button>
-        </Link>
-      </div>
-      <div>
-        <div className="order">
+        <div className="orderAlphabetical">
           <div className='text-filter'>
             <label>Alphabetical Order</label>
           </div>
@@ -55,7 +63,7 @@ const Home = () => {
             <option value="D">Z - A</option>
           </select>
         </div>
-        <div className="order">
+        <div className="orderPopulation">
           <div className='text-filter'>
             <label>Population Order</label>
           </div>
@@ -65,11 +73,11 @@ const Home = () => {
             <option value="D">Highest to Lowest</option>
           </select>
         </div>
-        <div className="filter">
+        <div className="filterContinent">
           <div className='text-filter'>
             <label>Filter by Continent</label>
           </div>
-          <select id="continent-select" onChange={handleFilter}>
+          <select id="continent-select" onChange={handleFilterContinent}>
             <option value="default">Select Continent</option>
             <option value="Africa">Africa</option>
             <option value="Antarctica">Antarctica</option>
@@ -78,6 +86,17 @@ const Home = () => {
             <option value="North America">North America</option>
             <option value="South America">South America</option>
             <option value="Oceania">Oceania</option>
+          </select>
+        </div>
+        <div className="filterActivity">
+          <div className='text-filter'>
+            <label>Filter by Activity</label>
+          </div>
+          <select id="activity-select" onChange={handleFilterActivity} >
+            <option value="">Select Activity</option>
+            {activities.map((activity, index) => (
+              <option key={index} value={activity.name}>{activity.name}</option>
+            ))}
           </select>
         </div>
       </div>

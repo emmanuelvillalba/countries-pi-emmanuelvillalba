@@ -1,0 +1,29 @@
+.about-container {
+    font-family: 'Comic Sans MS', cursive;
+    font-weight: bold;
+    font-size:large;
+    color: rgb(252, 242, 242);
+    text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.3);
+}
+
+.comic-sans-bold {
+    font-family: 'Comic Sans MS', cursive;
+    font-weight: bold;
+    display: inline-block;
+    color: black;
+    background-color: #b2f1e0;
+    padding: 1px; 
+    border-radius:1cap; 
+    padding: 10px;
+}
+
+.comic-sans {
+    font-family: 'Comic Sans MS', cursive;
+    display: inline-block;
+    color: black;
+    background-color: #b2f1e0;
+    padding: 1px; 
+    border-radius:2cap; 
+    padding: 10px;
+}
+

@@ -8,6 +8,7 @@ import {
   ORDER_ALPHABETICAL,
   ORDER_POPULATION,
   FILTER_CONTINENT,
+  FILTER_ACTIVITY,
   FIND_DETAIL,
   CREATE_ACTIVITY,
 } from "./actions-types";
@@ -102,6 +103,13 @@ export const filterContinent = (continent) => {
   return {
     type: FILTER_CONTINENT,
     payload: continent,
+  };
+};
+
+export const filterActivity = (activity) => {
+  return {
+    type: FILTER_ACTIVITY,
+    payload: activity,
   };
 };
 
