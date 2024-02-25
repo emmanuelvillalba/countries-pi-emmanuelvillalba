@@ -12,6 +12,7 @@ import {
   CLEANER_FILTER,
   FIND_DETAIL,
   CREATE_ACTIVITY,
+  DELETE_ACTIVITY,
 } from "./actions-types";
 
 export const findAllCountries = (start, end) => {
@@ -154,6 +155,25 @@ export const createActivity = (activityDate) => {
       alert("Successfully created tourist activity");
       return dispatch({
         type: CREATE_ACTIVITY,
+        payload: data,
+      });
+    } catch (error) {
+      if (error.response.data.error) {
+        window.alert(error.response.data.error);
+      } else {
+        window.alert(error.message);
+      }
+    }
+  };
+};
+
+export const deleteActivity = (id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.delete(URL_SERVER + `/activities/${id}`);
+      alert("Successfully delete tourist activity");
+      return dispatch({
+        type: DELETE_ACTIVITY,
         payload: data,
       });
     } catch (error) {

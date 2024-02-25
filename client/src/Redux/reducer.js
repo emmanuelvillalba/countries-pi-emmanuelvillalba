@@ -10,6 +10,7 @@ import {
   CLEANER_FILTER,
   FIND_DETAIL,
   CREATE_ACTIVITY,
+  DELETE_ACTIVITY,
 } from "./actions-types";
 
 const initialState = {
@@ -21,7 +22,6 @@ const initialState = {
 
 const rootReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    
     case FIND_ALLCOUNTRY:
       return {
         ...state,
@@ -109,6 +109,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
       };
 
     case CREATE_ACTIVITY:
+      return {
+        ...state,
+        activities: payload,
+      };
+
+    case DELETE_ACTIVITY:
       return {
         ...state,
         activities: payload,
