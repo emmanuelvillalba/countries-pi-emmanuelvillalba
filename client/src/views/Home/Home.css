@@ -21,7 +21,7 @@
     position: fixed;
     justify-content: center;
     top: 14%;
-    right: 9%;
+    right: 0;
     margin: 10px;
     padding: 20px;
   }
@@ -29,8 +29,8 @@
 .orderPopulation {
     position: fixed;
     justify-content: center;
-    top: 14%;
-    right: 1%;
+    top: 23%;
+    right: 0;
     margin: 10px;
     padding: 20px;
   }
@@ -38,8 +38,8 @@
   .filterContinent {
     position: fixed;
     justify-content: center;
-    top: 22%;
-    right: 5%;
+    top: 32%;
+    right: 0;
     margin: 10px;
     padding: 20px;
   }
@@ -47,8 +47,23 @@
   .filterActivity {
     position: fixed;
     justify-content: center;
-    top: 30%;
-    right: 3%;
+    top: 41%;
+    right: 0;
     margin: 10px;
     padding: 20px;
+  }
+
+  #order-select {
+    border: none;
+    border-radius: 100px;
+    appearance: none;
+    padding: 10px 10px 10px;
+    width: 310px;
+    color: rgb(0, 0, 0);
+    background-color: #f86b05de;
+    font-size: 22px;
+  }
+
+  .text-filter {
+    font-size: 25px;
   }

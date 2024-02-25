@@ -1,5 +1,6 @@
 .parent {
   width: 400px;
+  height: 330px;
   padding: 20px;
   perspective: 1000px;
 }

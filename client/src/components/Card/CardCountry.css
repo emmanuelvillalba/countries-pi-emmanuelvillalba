@@ -1,7 +1,7 @@
 * {
-    box-sizing: border-box;
-  }
-  
+  box-sizing: border-box;
+}
+
 .card {
   display: flex;
   align-items: center;
@@ -16,8 +16,9 @@
 .card img {
   max-width: 260px;
   max-height: 200px;
-  width: 35vw;
-  height: 300px;
+  width: 100%;
+  width: auto;
+  height: auto;
   object-fit: cover;
   margin-left: -60px;
   margin-right: 30px;
@@ -83,3 +84,5 @@
     margin: -140px 0 30px 0;
   }
 } */
+
+

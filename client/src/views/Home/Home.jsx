@@ -77,7 +77,7 @@ const Home = () => {
           <div className='text-filter'>
             <label>Filter by Continent</label>
           </div>
-          <select id="continent-select" onChange={handleFilterContinent}>
+          <select id="order-select" onChange={handleFilterContinent}>
             <option value="default">Select Continent</option>
             <option value="Africa">Africa</option>
             <option value="Antarctica">Antarctica</option>
@@ -92,7 +92,7 @@ const Home = () => {
           <div className='text-filter'>
             <label>Filter by Activity</label>
           </div>
-          <select id="activity-select" onChange={handleFilterActivity} >
+          <select id="order-select" onChange={handleFilterActivity} >
             <option value="">Select Activity</option>
             {activities.map((activity, index) => (
               <option key={index} value={activity.name}>{activity.name}</option>

@@ -2,10 +2,10 @@ import './About.css'
 import AboutText from "./AboutText.jsx"
 
 const About = () => {
-  return (
-    <div className="containerAbout">
+    return (
+        <div className="containerAbout">
             <div>
-                <AboutText></AboutText>
+                <AboutText />
             </div>
             <div className="social">
                 <a href="https://www.instagram.com/emas9/?hl=es-la" className="socialContainer containerOne">
@@ -16,7 +16,7 @@ const About = () => {
                 </a>
             </div>
         </div>
-  )
+    )
 }
 
 export default About
