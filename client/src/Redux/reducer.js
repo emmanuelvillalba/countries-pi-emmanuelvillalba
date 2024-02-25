@@ -7,6 +7,7 @@ import {
   ORDER_POPULATION,
   FILTER_CONTINENT,
   FILTER_ACTIVITY,
+  CLEANER_FILTER,
   FIND_DETAIL,
   CREATE_ACTIVITY,
 } from "./actions-types";
@@ -20,6 +21,7 @@ const initialState = {
 
 const rootReducer = (state = initialState, { type, payload }) => {
   switch (type) {
+    
     case FIND_ALLCOUNTRY:
       return {
         ...state,
@@ -44,6 +46,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         activities: payload,
+      };
+
+    case CLEANER_FILTER:
+      return {
+        ...state,
+        countries: state.allCountries,
       };
 
     case FIND_DETAIL:
@@ -91,8 +99,8 @@ const rootReducer = (state = initialState, { type, payload }) => {
 
     case FILTER_ACTIVITY:
       const copy2AllCountries = [...state.allCountries];
-      const filteredActivity = copy2AllCountries.filter(
-        (country) => country.Activities.some(activity => activity.name === payload)
+      const filteredActivity = copy2AllCountries.filter((country) =>
+        country.Activities.some((activity) => activity.name === payload)
       );
       return {
         ...state,

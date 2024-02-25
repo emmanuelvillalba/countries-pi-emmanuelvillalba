@@ -9,17 +9,24 @@ import {
   ORDER_POPULATION,
   FILTER_CONTINENT,
   FILTER_ACTIVITY,
+  CLEANER_FILTER,
   FIND_DETAIL,
   CREATE_ACTIVITY,
 } from "./actions-types";
 
-export const findAllCountries = () => {
+export const findAllCountries = (start, end) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(URL_SERVER + "/countries");
+      let payloadData = data;
+
+      if (start !== undefined && end !== undefined) {
+        payloadData = data.slice(start, end);
+      }
+
       return dispatch({
         type: FIND_ALLCOUNTRY,
-        payload: data,
+        payload: payloadData,
       });
     } catch (error) {
       if (error.response.data.error) {
@@ -113,6 +120,12 @@ export const filterActivity = (activity) => {
   };
 };
 
+export const cleanerFilter = () => {
+  return {
+    type: CLEANER_FILTER,
+  };
+};
+
 export const findDetail = (id) => {
   return async (dispatch) => {
     try {
@@ -138,7 +151,7 @@ export const createActivity = (activityDate) => {
         URL_SERVER + `/activities`,
         activityDate
       );
-      alert('Successfully created tourist activity');
+      alert("Successfully created tourist activity");
       return dispatch({
         type: CREATE_ACTIVITY,
         payload: data,

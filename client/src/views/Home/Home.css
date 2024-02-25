@@ -1,69 +1,89 @@
 .searchbar {
-    position: fixed;
-    top: 14%;
-    right: 0;
-    margin: 10px;
-    padding: 20px;
+  position: fixed;
+  top: 14%;
+  right: 0;
+  margin: 10px;
+  padding: 20px;
 }
 
 .containerCountry {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin-left:-25%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-left: -25%;
 }
 
 .containerCountry div {
-    margin: 50px;
+  margin: 50px;
 }
 
 .orderAlphabetical {
-    position: fixed;
-    justify-content: center;
-    top: 14%;
-    right: 0;
-    margin: 10px;
-    padding: 20px;
-  }
+  position: fixed;
+  justify-content: center;
+  top: 14%;
+  right: 0;
+  margin: 10px;
+  padding: 20px;
+}
 
 .orderPopulation {
-    position: fixed;
-    justify-content: center;
-    top: 23%;
-    right: 0;
-    margin: 10px;
-    padding: 20px;
-  }
-  
-  .filterContinent {
-    position: fixed;
-    justify-content: center;
-    top: 32%;
-    right: 0;
-    margin: 10px;
-    padding: 20px;
-  }
-  
-  .filterActivity {
-    position: fixed;
-    justify-content: center;
-    top: 41%;
-    right: 0;
-    margin: 10px;
-    padding: 20px;
-  }
+  position: fixed;
+  justify-content: center;
+  top: 23%;
+  right: 0;
+  margin: 10px;
+  padding: 20px;
+}
 
-  #order-select {
-    border: none;
-    border-radius: 100px;
-    appearance: none;
-    padding: 10px 10px 10px;
-    width: 310px;
-    color: rgb(0, 0, 0);
-    background-color: #f86b05de;
-    font-size: 22px;
-  }
+.filterContinent {
+  position: fixed;
+  justify-content: center;
+  top: 32%;
+  right: 0;
+  margin: 10px;
+  padding: 20px;
+}
 
-  .text-filter {
-    font-size: 25px;
-  }
+.filterActivity {
+  position: fixed;
+  justify-content: center;
+  top: 41%;
+  right: 0;
+  margin: 10px;
+  padding: 20px;
+}
+
+.clean-filter {
+  position: fixed;
+  justify-content: center;
+  top: 60%;
+  right: 2%;
+  margin: 10px;
+  padding: 10px;
+  font-size: 18px;
+}
+
+.all-countries {
+  position: fixed;
+  justify-content: center;
+  top: 60%;
+  right: 9%;
+  margin: 10px;
+  padding: 10px;
+  font-size: 18px;
+}
+
+#order-select {
+  border: none;
+  border-radius: 100px;
+  appearance: none;
+  padding: 10px 10px 10px;
+  width: 310px;
+  color: rgb(0, 0, 0);
+  background-color: #f86b05de;
+  font-size: 22px;
+}
+
+.text-filter {
+  font-size: 25px;
+}

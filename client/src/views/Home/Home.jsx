@@ -12,7 +12,8 @@ import {
   orderPopulation,
   filterContinent,
   filterActivity,
-  findAllActivities
+  findAllActivities,
+  cleanerFilter
 } from '../../redux/actions'
 
 const Home = () => {
@@ -42,8 +43,16 @@ const Home = () => {
     dispatch(filterActivity(event.target.value));
   }
 
+  const handlerCleaner = () => {
+    dispatch(cleanerFilter())
+  }
+
+  const handlerCountries = () => {
+    dispatch(dispatch(findAllCountries()))
+  }
+
   useEffect(() => {
-    dispatch(findAllCountries())
+    dispatch(findAllCountries(0, 10))
     dispatch(findAllActivities())
   }, [])
 
@@ -52,7 +61,7 @@ const Home = () => {
       <div className="searchbar">
         <SearchBar action={findNameCountries} />
       </div>
-      <div>
+      <div className="all-filters">
         <div className="orderAlphabetical">
           <div className='text-filter'>
             <label>Alphabetical Order</label>
@@ -98,6 +107,8 @@ const Home = () => {
               <option key={index} value={activity.name}>{activity.name}</option>
             ))}
           </select>
+          <button className="clean-filter" onClick={handlerCleaner}>Clean filters</button>
+          <button className="all-countries" onClick={handlerCountries}>All Countries</button>
         </div>
       </div>
       <div className="containerCountry">
