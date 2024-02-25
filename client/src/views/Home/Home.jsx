@@ -30,6 +30,7 @@ const Home = () => {
 
   const handleAlphabetical = (event) => {
     dispatch(orderAlphabetical(event.target.value))
+
   }
   const handlePopulation = (event) => {
     dispatch(orderPopulation(event.target.value))
@@ -45,6 +46,11 @@ const Home = () => {
 
   const handlerCleaner = () => {
     dispatch(cleanerFilter())
+
+    let selects = document.querySelectorAll('select');
+    selects.forEach((select) => {
+      select.value = select.options[0].value;
+    });
   }
 
   const handlerCountries = () => {
@@ -67,7 +73,7 @@ const Home = () => {
             <label>Alphabetical Order</label>
           </div>
           <select id="order-select" onChange={handleAlphabetical}>
-            <option>Select Order</option>
+            <option value="default">Select Order</option>
             <option value="A">A - Z</option>
             <option value="D">Z - A</option>
           </select>
@@ -77,7 +83,7 @@ const Home = () => {
             <label>Population Order</label>
           </div>
           <select id="order-select" onChange={handlePopulation}>
-            <option>Select Order</option>
+            <option value="default">Select Order</option>
             <option value="A">Lowest to Highest</option>
             <option value="D">Highest to Lowest</option>
           </select>
@@ -102,7 +108,7 @@ const Home = () => {
             <label>Filter by Activity</label>
           </div>
           <select id="order-select" onChange={handleFilterActivity} >
-            <option value="">Select Activity</option>
+            <option value="default">Select Activity</option>
             {activities.map((activity, index) => (
               <option key={index} value={activity.name}>{activity.name}</option>
             ))}
