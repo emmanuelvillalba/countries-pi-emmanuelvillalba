@@ -1,6 +1,7 @@
+require("dotenv").config();
 const server = require("./src/server");
 const { conn } = require("./src/db.js");
-const PORT = 3001;
+const { LOCAL_PORT } = process.env;
 const upDateDB = require("./src/utils/upDateDB.js")
 
 async function startServer() {
@@ -10,8 +11,8 @@ async function startServer() {
     await conn.sync({ force: false });
     console.log("All models were synchronized successfully");
     await upDateDB()
-    await server.listen(PORT, () => {
-      console.log(`Server listening on port ${PORT}`);
+    await server.listen(LOCAL_PORT, () => {
+      console.log(`Server listening on port ${LOCAL_PORT}`);
     });
   } catch (error) {
     console.error("Unable to connect:", error.message);

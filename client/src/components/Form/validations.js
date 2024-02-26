@@ -29,7 +29,7 @@ export default (activityDate, fieldName) => {
     fieldName === "countries" &&
     (!activityDate.countries || activityDate.countries.length === 0)
   ) {
-    errors.countries = "You must assign at least one country ID";
+    errors.countries = "Assign at least one country ID";
   }
 
   return errors;

@@ -18,9 +18,14 @@ routerCountries.get("/:id", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
- 
+
 routerCountries.get("/", async (req, res) => {
   const { name } = req.query;
+
+  if (name == "") {
+    return res.status(400).json({ error: "Enter data to search" });
+  }
+
   if (name) {
     try {
       const filteredCountry = await filterCountriesName(name);
