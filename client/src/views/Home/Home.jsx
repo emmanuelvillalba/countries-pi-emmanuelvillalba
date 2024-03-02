@@ -1,4 +1,5 @@
 import "./Home.css"
+import "../../assets/loader.css"
 import { useSelector, useDispatch } from "react-redux"
 import { useEffect, useState } from 'react'
 
@@ -13,7 +14,8 @@ import {
   filterContinent,
   filterActivity,
   findAllActivities,
-  cleanerFilter
+  cleanerFilter,
+  cleanerState
 } from '../../redux/actions'
 
 const Home = () => {
@@ -21,6 +23,7 @@ const Home = () => {
   const dispatch = useDispatch()
   const countries = useSelector(state => state.countries)
   const activities = useSelector(state => state.activities)
+  const isLoading = useSelector(state => state.isLoading)
 
   const [currentPage, setCurrentPage] = useState(1);
   const cardsPerPage = 10
@@ -30,18 +33,21 @@ const Home = () => {
 
   const handleAlphabetical = (event) => {
     dispatch(orderAlphabetical(event.target.value))
-
+    setCurrentPage(1)
   }
   const handlePopulation = (event) => {
     dispatch(orderPopulation(event.target.value))
+    setCurrentPage(1)
   }
 
   const handleFilterContinent = (event) => {
     dispatch(filterContinent(event.target.value));
+    setCurrentPage(1)
   }
 
   const handleFilterActivity = (event) => {
     dispatch(filterActivity(event.target.value));
+    setCurrentPage(1)
   }
 
   const handlerCleaner = () => {
@@ -54,18 +60,19 @@ const Home = () => {
   }
 
   const handlerCountries = () => {
-    dispatch(dispatch(findAllCountries()))
+    dispatch(findAllCountries())
   }
 
   useEffect(() => {
     dispatch(findAllCountries(0, 10))
     dispatch(findAllActivities())
+    return () => { dispatch(cleanerState("home")) }
   }, [])
 
   return (
     <div>
       <div className="searchbar">
-        <SearchBar action={findNameCountries} />
+        <SearchBar action={findNameCountries} setCurrentPage={setCurrentPage} />
       </div>
       <div className="all-filters">
         <div className="orderAlphabetical">
@@ -117,16 +124,21 @@ const Home = () => {
           <button className="all-countries" onClick={handlerCountries}>All Countries</button>
         </div>
       </div>
-      <div className="containerCountry">
-        {countries
-          ?.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
-          .map((country) => {
-            return <CardCountry country={country} key={country.id} />;
-          })}
-      </div>
-      <div>
-        <Pagination currentPage={currentPage} totalPages={Math.ceil(countries.length / cardsPerPage)} changePage={changePage} />
-      </div>
+      {isLoading ? (<div className="loader"></div>
+      ) : (
+        <div>
+          <div className="containerCountry">
+            {countries
+              ?.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
+              .map((country) => {
+                return <CardCountry country={country} key={country.id} />;
+              })}
+          </div>
+          <div>
+            <Pagination currentPage={currentPage} totalPages={Math.ceil(countries.length / cardsPerPage)} changePage={changePage} />
+          </div>
+        </div>
+      )}
     </div>
   )
 }

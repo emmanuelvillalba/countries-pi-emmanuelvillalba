@@ -3,7 +3,7 @@ import iconSearch from '../../assets/iconSearch.svg'
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
 
-const SearchBar = ({action}) => {
+const SearchBar = ({action, setCurrentPage}) => {
   const [aux, setAux] = useState("");
 
   const dispatch = useDispatch();
@@ -15,6 +15,7 @@ const SearchBar = ({action}) => {
   const handleSearch = () => {
     const inputSearch = document.querySelector("#inputSearch")
     dispatch(action(inputSearch.value))
+    setCurrentPage(1)
     inputSearch.value = ""
   }
 

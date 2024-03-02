@@ -11,6 +11,8 @@ import {
   FIND_DETAIL,
   CREATE_ACTIVITY,
   DELETE_ACTIVITY,
+  CLEANER_STATE,
+  LOADER,
 } from "./actions-types";
 
 const initialState = {
@@ -18,6 +20,7 @@ const initialState = {
   allCountries: [],
   activities: [],
   detail: [],
+  isLoading: true,
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -118,6 +121,32 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         activities: payload,
+      };
+
+    case CLEANER_STATE:
+      if (payload === "home") {
+        return {
+          ...state,
+          countries: [],
+          allCountries: [],
+          activities: [],
+        };
+      } else if (payload === "activities") {
+        return {
+          ...state,
+          activities: [],
+        };
+      } else if (payload === "details") {
+        return {
+          ...state,
+          detail: [],
+        };
+      }
+
+    case LOADER:
+      return {
+        ...state,
+        isLoading: payload,
       };
 
     default:

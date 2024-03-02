@@ -2,7 +2,7 @@
 // const path = require("path");
 const { Country } = require("../db");
 const axios = require("axios");
-URL_API = "http://localhost:5000/countries"
+URL_API = "http://localhost:5000/countries";
 
 const upDateDB = async () => {
   try {
@@ -12,10 +12,9 @@ const upDateDB = async () => {
     // );
     // const jsonData = JSON.parse(data);
 
-    const {data} = await axios(URL_API)
- 
+    const { data } = await axios(URL_API);
 
-    let countries = data.map((country) => {
+    let countries = data.map(async (country) => {
       let capital;
       if (!country.capital || country.capital.length === 0) {
         capital = "unknown";
@@ -25,7 +24,7 @@ const upDateDB = async () => {
         capital = country.capital.join(", ");
       }
 
-      return {
+      let countryData = {
         id: country.cca3,
         name: country.name.common,
         continent: country.continents[0],
@@ -35,9 +34,15 @@ const upDateDB = async () => {
         population: country.population,
         flag: country.flags.png,
       };
+
+      await Country.findOrCreate({
+        where: { id: countryData.id },
+        defaults: countryData,
+      });
     });
 
-    await Country.bulkCreate(countries);
+    // await Country.bulkCreate(countries);
+    await Promise.all(countries);
     console.log("Countries data loaded successfully");
   } catch (error) {
     console.error("Could not create countries list:", error.message);

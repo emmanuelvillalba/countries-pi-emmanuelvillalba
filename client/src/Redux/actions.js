@@ -13,10 +13,13 @@ import {
   FIND_DETAIL,
   CREATE_ACTIVITY,
   DELETE_ACTIVITY,
+  CLEANER_STATE,
+  LOADER,
 } from "./actions-types";
 
 export const findAllCountries = (start, end) => {
   return async (dispatch) => {
+    dispatch(loader(true));
     try {
       const { data } = await axios.get(URL_SERVER + "/countries");
       let payloadData = data;
@@ -25,11 +28,13 @@ export const findAllCountries = (start, end) => {
         payloadData = data.slice(start, end);
       }
 
+      dispatch(loader(false));
       return dispatch({
         type: FIND_ALLCOUNTRY,
         payload: payloadData,
       });
     } catch (error) {
+      dispatch(loader(false));
       if (error.response.data.error) {
         window.alert(error.response.data.error);
       } else {
@@ -41,13 +46,16 @@ export const findAllCountries = (start, end) => {
 
 export const findAllActivities = () => {
   return async (dispatch) => {
+    dispatch(loader(true));
     try {
       const { data } = await axios.get(URL_SERVER + "/activities");
+      dispatch(loader(false)); 
       return dispatch({
         type: FIND_ALLACTIVITY,
         payload: data,
       });
     } catch (error) {
+      dispatch(loader(false)); 
       if (error.response.data.error) {
         window.alert(error.response.data.error);
       } else {
@@ -59,13 +67,16 @@ export const findAllActivities = () => {
 
 export const findNameCountries = (name) => {
   return async (dispatch) => {
+    dispatch(loader(true));
     try {
       const { data } = await axios.get(URL_SERVER + `/countries?name=${name}`);
+      dispatch(loader(false));
       return dispatch({
         type: FIND_NAMECOUNTRY,
         payload: data,
       });
     } catch (error) {
+      dispatch(loader(false));
       if (error.response.data.error) {
         window.alert(error.response.data.error);
       } else {
@@ -77,13 +88,16 @@ export const findNameCountries = (name) => {
 
 export const findNameActivities = (name) => {
   return async (dispatch) => {
+    dispatch(loader(true));
     try {
       const { data } = await axios.get(URL_SERVER + `/activities?name=${name}`);
+      dispatch(loader(false));
       return dispatch({
         type: FIND_NAMEACTIVITY,
         payload: data,
       });
     } catch (error) {
+      dispatch(loader(false));
       if (error.response.data.error) {
         window.alert(error.response.data.error);
       } else {
@@ -129,13 +143,16 @@ export const cleanerFilter = () => {
 
 export const findDetail = (id) => {
   return async (dispatch) => {
+    dispatch(loader(true));
     try {
       const { data } = await axios.get(URL_SERVER + `/countries/${id}`);
+      dispatch(loader(false));
       return dispatch({
         type: FIND_DETAIL,
         payload: data,
       });
     } catch (error) {
+      dispatch(loader(false));
       if (error.response.data.error) {
         window.alert(error.response.data.error);
       } else {
@@ -147,17 +164,20 @@ export const findDetail = (id) => {
 
 export const createActivity = (activityDate) => {
   return async (dispatch) => {
+    dispatch(loader(true));
     try {
       const { data } = await axios.post(
         URL_SERVER + `/activities`,
         activityDate
       );
+      dispatch(loader(false));
       alert("Successfully created tourist activity");
       return dispatch({
         type: CREATE_ACTIVITY,
         payload: data,
       });
     } catch (error) {
+      dispatch(loader(false));
       if (error.response.data.error) {
         window.alert(error.response.data.error);
       } else {
@@ -169,19 +189,36 @@ export const createActivity = (activityDate) => {
 
 export const deleteActivity = (id) => {
   return async (dispatch) => {
+    dispatch(loader(true));
     try {
       const { data } = await axios.delete(URL_SERVER + `/activities/${id}`);
+      dispatch(loader(false));
       alert("Successfully delete tourist activity");
       return dispatch({
         type: DELETE_ACTIVITY,
         payload: data,
       });
     } catch (error) {
+      dispatch(loader(false));
       if (error.response.data.error) {
         window.alert(error.response.data.error);
       } else {
         window.alert(error.message);
       }
     }
+  };
+};
+
+export const cleanerState = (component) => {
+  return {
+    type: CLEANER_STATE,
+    payload: component,
+  };
+};
+
+export const loader = (value) => {
+  return {
+    type: LOADER,
+    payload: value,
   };
 };

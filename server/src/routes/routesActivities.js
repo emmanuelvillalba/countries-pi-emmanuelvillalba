@@ -29,7 +29,7 @@ routerActivities.get("/", async (req, res) => {
 });
 
 routerActivities.post("/", async (req, res) => {
-  const { name, difficulty, duration, season, countries } = req.body;
+  let { name, difficulty, duration, season, countries } = req.body;
 
   if (!name || !difficulty || !duration || !season || !countries) {
     return res.status(400).json({ error: "Missing data" });
@@ -38,6 +38,8 @@ routerActivities.post("/", async (req, res) => {
   const countriesId = countries
     .split(",")
     .map((country) => country.toUpperCase());
+
+  name = name.toUpperCase();
 
   try {
     const activitiesCountries = await createActivity({

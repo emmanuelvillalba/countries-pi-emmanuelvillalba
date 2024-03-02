@@ -26,8 +26,8 @@ const CardActivity = ({ activity }) => {
                         Countries:
                         <br />
                         {activity.Countries?.map((country, index) => (
-                            <Link to={DETAILID(country.id)}>
-                                <span key={index}> {country.id} </span>
+                            <Link key={index} to={DETAILID(country.id)}>
+                                <span> {country.id} </span>
                             </Link>
                         ))}
                     </span>

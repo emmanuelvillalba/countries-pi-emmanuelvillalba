@@ -1,0 +1,30 @@
+/* HTML: <div className="loader"></div> */
+
+.loader {
+    width: 200px;
+    aspect-ratio: 1;
+    position: relative;
+    transform: rotate(45deg);
+  }
+  .loader:before,
+  .loader:after {
+    content: "Loading";
+    font-size:25px;
+    position: absolute;
+    inset: 0;
+    border-radius: 50% 50% 0 50%;
+    background: #f86b05de;
+    -webkit-mask: radial-gradient(circle 60px at 50% 50%, #0000 94%, #000);
+  }
+  .loader:after {
+    animation: l6 1s infinite;
+    transform: perspective(300px) translateZ(0px);
+  }
+  
+  @keyframes l6 {
+    to {
+      transform: perspective(300px) translateZ(150px);
+      opacity: 0;
+    }
+  }
+  

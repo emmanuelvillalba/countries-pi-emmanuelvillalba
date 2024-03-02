@@ -14,7 +14,7 @@ const Pagination = ({ currentPage, totalPages, changePage }) => {
             {currentPage > 3 && <span className="dots">...</span>}
             {currentPage > 2 && <button className="btn-pagination" onClick={() => changePage(currentPage - 2)}>{currentPage - 2}</button>}
             {currentPage > 1 && <button className="btn-pagination" onClick={() => changePage(currentPage - 1)}>{currentPage - 1}</button>}
-            <button className='currentPage'> {currentPage} </button>
+            {totalPages > 1 && <button className='currentPage'> {currentPage} </button>}
             {currentPage < totalPages && <button className="btn-pagination" onClick={() => changePage(currentPage + 1)}>{currentPage + 1}</button>}
             {currentPage < totalPages - 1 && <button className="btn-pagination" onClick={() => changePage(currentPage + 2)}>{currentPage + 2}</button>}
             {currentPage < totalPages - 2 && <span className="dots">...</span>}
