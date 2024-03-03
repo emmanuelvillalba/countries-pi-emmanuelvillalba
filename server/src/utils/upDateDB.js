@@ -41,7 +41,6 @@ const upDateDB = async () => {
       });
     });
 
-    // await Country.bulkCreate(countries);
     await Promise.all(countries);
     console.log("Countries data loaded successfully");
   } catch (error) {

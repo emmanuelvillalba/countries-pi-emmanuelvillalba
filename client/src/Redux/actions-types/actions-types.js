@@ -1,0 +1,21 @@
+//countries
+export const FIND_ALLCOUNTRY = "FIND_ALLCOUNTRY";
+export const FIND_NAMECOUNTRY = "FIND_NAMECOUNTRY";
+export const FIND_DETAIL = "FIND_DETAIL";
+
+//activities
+export const FIND_ALLACTIVITY = "FIND_ALLACTIVITY";
+export const FIND_NAMEACTIVITY = "FIND_NAMEACTIVITY";
+export const CREATE_ACTIVITY = "CREATE_ACTIVITY";
+export const DELETE_ACTIVITY = "DELETE_ACTIVITY";
+
+//filters
+export const ORDER_ALPHABETICAL = "ORDER_ALPHABETICAL";
+export const ORDER_POPULATION = "ORDER_POPULATION";
+export const FILTER_CONTINENT = "FILTER_CONTINENT";
+export const FILTER_ACTIVITY = "FILTER_ACTIVITY";
+export const CLEANER_FILTER = "CLEANER_FILTER";
+
+//stateManagement
+export const CLEANER_STATE = "CLEANER_STATE";
+export const LOADER = "LOADER";

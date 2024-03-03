@@ -1,7 +1,7 @@
 require("dotenv").config();
 const server = require("./src/server");
 const { conn } = require("./src/db.js");
-const { SERVER_PORT } = process.env || 3001;
+const {SERVER_PORT} = process.env || 3001;
 const upDateDB = require("./src/utils/upDateDB.js");
 
 async function startServer() {

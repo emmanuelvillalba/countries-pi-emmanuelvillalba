@@ -1,7 +1,7 @@
 import "./CreateActivity.css"
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { createActivity } from '../../redux/actions.js'
+import { createActivity } from '../../redux/actions/activities/actions-activities.js'
 import validations from './validations.js'
 
 const FormActivity = () => {

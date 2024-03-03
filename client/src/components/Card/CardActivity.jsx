@@ -2,7 +2,7 @@ import "./CardActivity.css"
 import { Link } from "react-router-dom"
 import { DETAILID } from "../../helpers/PATHROUTES"
 import { useDispatch } from "react-redux"
-import { deleteActivity } from "../../redux/actions"
+import { deleteActivity } from "../../redux/actions/activities/actions-activities"
 
 const CardActivity = ({ activity }) => {
     const dispatch = useDispatch()

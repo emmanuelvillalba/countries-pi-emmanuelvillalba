@@ -1,11 +1,13 @@
 export default (activityDate, fieldName, errors) => {
-  
-  const lettersOnlyRegex = /^[a-zA-Z]+$/;
+  const lettersOnlyRegex = /^[A-Za-z]+(?:[ _.]|:?[ A-Za-z]+)*$/;
   if (fieldName === "name") {
     if (!activityDate.name) {
       return { ...errors, name: "The activity must have a name" };
     } else if (!lettersOnlyRegex.test(activityDate.name)) {
-      return { ...errors, name: "Only letters allowed" };
+      return {
+        ...errors,
+        name: "Cannot contain numbers or symbols(exception _ : .)",
+      };
     } else {
       return { ...errors, name: "" };
     }
@@ -29,6 +31,8 @@ export default (activityDate, fieldName, errors) => {
       return { ...errors, duration: "Enter a number" };
     } else if (activityDate.duration < 1 || activityDate.duration > 72) {
       return { ...errors, duration: "Hour range: min 1 - max 72" };
+    } else if (!integerRegex.test(activityDate.duration)) {
+      return { ...errors, duration: "The number must be integer" };
     } else {
       return { ...errors, duration: "" };
     }
@@ -42,9 +46,16 @@ export default (activityDate, fieldName, errors) => {
     }
   }
 
+  const letterCommaSpaceRegex = /^([a-zA-Z]{3},)*[a-zA-Z]{3}$/i;
   if (fieldName === "countries") {
     if (!activityDate.countries || activityDate.countries.length === 0) {
       return { ...errors, countries: "Assign at least one country ID" };
+    } else if (!letterCommaSpaceRegex.test(activityDate.countries)) {
+      return {
+        ...errors,
+        countries:
+          "Incorrect format. It should be: 'abc,def,ghi' no spaces. Cannot contain numbers or symbols",
+      };
     } else {
       return { ...errors, countries: "" };
     }

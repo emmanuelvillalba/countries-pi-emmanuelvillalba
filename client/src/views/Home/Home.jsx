@@ -7,16 +7,15 @@ import SearchBar from "../../components/SearchBar/SearchBar"
 import CardCountry from '../../components/Card/CardCountry'
 import Pagination from '../../components/Pagination/pagination'
 import {
-  findAllCountries,
-  findNameCountries,
-  orderAlphabetical,
-  orderPopulation,
-  filterContinent,
-  filterActivity,
-  findAllActivities,
-  cleanerFilter,
-  cleanerState
-} from '../../redux/actions'
+  handleAlphabetical,
+  handlePopulation,
+  handleFilterContinent,
+  handleFilterActivity,
+  handlerCleaner
+} from "../../components/Filters/filters"
+import { findAllCountries, findNameCountries } from '../../redux/actions/countries/actions-countries'
+import { findAllActivities } from '../../redux/actions/activities/actions-activities'
+import { cleanerState } from '../../redux/actions/stateManagement/actions-stateManagement'
 
 const Home = () => {
 
@@ -30,34 +29,6 @@ const Home = () => {
   const changePage = (num) => {
     setCurrentPage(num);
   };
-
-  const handleAlphabetical = (event) => {
-    dispatch(orderAlphabetical(event.target.value))
-    setCurrentPage(1)
-  }
-  const handlePopulation = (event) => {
-    dispatch(orderPopulation(event.target.value))
-    setCurrentPage(1)
-  }
-
-  const handleFilterContinent = (event) => {
-    dispatch(filterContinent(event.target.value));
-    setCurrentPage(1)
-  }
-
-  const handleFilterActivity = (event) => {
-    dispatch(filterActivity(event.target.value));
-    setCurrentPage(1)
-  }
-
-  const handlerCleaner = () => {
-    dispatch(cleanerFilter())
-
-    let selects = document.querySelectorAll('select');
-    selects.forEach((select) => {
-      select.value = select.options[0].value;
-    });
-  }
 
   const handlerCountries = () => {
     dispatch(findAllCountries())
@@ -79,7 +50,7 @@ const Home = () => {
           <div className='text-filter'>
             <label>Alphabetical Order</label>
           </div>
-          <select id="order-select" onChange={handleAlphabetical}>
+          <select id="order-select" onChange={() => { handleAlphabetical(event, dispatch, setCurrentPage) }}>
             <option value="default">Select Order</option>
             <option value="A">A - Z</option>
             <option value="D">Z - A</option>
@@ -89,7 +60,7 @@ const Home = () => {
           <div className='text-filter'>
             <label>Population Order</label>
           </div>
-          <select id="order-select" onChange={handlePopulation}>
+          <select id="order-select" onChange={() => { handlePopulation(event, dispatch, setCurrentPage) }}>
             <option value="default">Select Order</option>
             <option value="A">Lowest to Highest</option>
             <option value="D">Highest to Lowest</option>
@@ -99,7 +70,7 @@ const Home = () => {
           <div className='text-filter'>
             <label>Filter by Continent</label>
           </div>
-          <select id="order-select" onChange={handleFilterContinent}>
+          <select id="order-select" onChange={() => { handleFilterContinent(event, dispatch, setCurrentPage) }}>
             <option value="default">Select Continent</option>
             <option value="Africa">Africa</option>
             <option value="Antarctica">Antarctica</option>
@@ -114,13 +85,13 @@ const Home = () => {
           <div className='text-filter'>
             <label>Filter by Activity</label>
           </div>
-          <select id="order-select" onChange={handleFilterActivity} >
+          <select id="order-select" onChange={() => { handleFilterActivity(event, dispatch, setCurrentPage) }} >
             <option value="default">Select Activity</option>
             {activities.map((activity, index) => (
               <option key={index} value={activity.name}>{activity.name}</option>
             ))}
           </select>
-          <button className="clean-filter" onClick={handlerCleaner}>Clean filters</button>
+          <button className="clean-filter" onClick={() => { handlerCleaner(dispatch) }}>Clean filters</button>
           <button className="all-countries" onClick={handlerCountries}>All Countries</button>
         </div>
       </div>

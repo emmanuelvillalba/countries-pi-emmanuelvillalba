@@ -5,7 +5,9 @@ import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
 import { ACTIVITIES } from '../../helpers/PATHROUTES'
-import { findDetail, findNameActivities, cleanerState } from '../../redux/actions'
+import { findDetail } from '../../redux/actions/countries/actions-countries'
+import { findNameActivities } from '../../redux/actions/activities/actions-activities'
+import { cleanerState } from '../../redux/actions/stateManagement/actions-stateManagement'
 
 const Details = () => {
   const { id } = useParams()
@@ -25,7 +27,7 @@ const Details = () => {
     <div>
       {isLoading ? (<div className="loader"></div>
       ) : (
-        <div class="card">
+        <div className="card">
           <img src={detail.flag} alt="image" />
           <div>
             <h2>Name: {detail.name}</h2>

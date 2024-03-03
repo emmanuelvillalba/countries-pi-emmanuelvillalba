@@ -1,4 +1,3 @@
-import React from 'react';
 import "./pagination.css"
 
 const Pagination = ({ currentPage, totalPages, changePage }) => {
