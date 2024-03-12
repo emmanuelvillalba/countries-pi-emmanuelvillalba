@@ -51,7 +51,7 @@ const Home = () => {
             <label>Alphabetical Order</label>
           </div>
           <select id="order-select" onChange={() => { handleAlphabetical(event, dispatch, setCurrentPage) }}>
-            <option value="default">Select Order</option>
+            <option value="default" disabled selected>Select Order</option>
             <option value="A">A - Z</option>
             <option value="D">Z - A</option>
           </select>
@@ -61,7 +61,7 @@ const Home = () => {
             <label>Population Order</label>
           </div>
           <select id="order-select" onChange={() => { handlePopulation(event, dispatch, setCurrentPage) }}>
-            <option value="default">Select Order</option>
+            <option value="default" disabled selected>Select Order</option>
             <option value="A">Lowest to Highest</option>
             <option value="D">Highest to Lowest</option>
           </select>
@@ -71,7 +71,7 @@ const Home = () => {
             <label>Filter by Continent</label>
           </div>
           <select id="order-select" onChange={() => { handleFilterContinent(event, dispatch, setCurrentPage) }}>
-            <option value="default">Select Continent</option>
+            <option value="default" disabled selected>Select Continent</option>
             <option value="Africa">Africa</option>
             <option value="Antarctica">Antarctica</option>
             <option value="Asia">Asia</option>
@@ -86,7 +86,7 @@ const Home = () => {
             <label>Filter by Activity</label>
           </div>
           <select id="order-select" onChange={() => { handleFilterActivity(event, dispatch, setCurrentPage) }} >
-            <option value="default">Select Activity</option>
+            <option value="default" disabled selected>Select Activity</option>
             {activities.map((activity, index) => (
               <option key={index} value={activity.name}>{activity.name}</option>
             ))}

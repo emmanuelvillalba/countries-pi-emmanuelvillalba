@@ -1,4 +1,3 @@
-const URL_SERVER = "https://countriespi-back-hnzo.onrender.com";
-// const URL_SERVER = "http://localhost:3001";
+const URL_SERVER = "https://back-countries-production-2e36.up.railway.app";
 
 export default URL_SERVER

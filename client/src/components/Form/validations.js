@@ -48,14 +48,8 @@ export default (activityDate, fieldName, errors) => {
 
   const letterCommaSpaceRegex = /^([a-zA-Z]{3},)*[a-zA-Z]{3}$/i;
   if (fieldName === "countries") {
-    if (!activityDate.countries || activityDate.countries.length === 0) {
+    if (!activityDate.countries) {
       return { ...errors, countries: "Assign at least one country ID" };
-    } else if (!letterCommaSpaceRegex.test(activityDate.countries)) {
-      return {
-        ...errors,
-        countries:
-          "Incorrect format. It should be: 'abc,def,ghi' no spaces. Cannot contain numbers or symbols",
-      };
     } else {
       return { ...errors, countries: "" };
     }
